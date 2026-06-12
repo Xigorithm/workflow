@@ -1,4 +1,4 @@
-# vLLM Ascend 池化（Pooling）特性学习文档
+# vLLM Ascend 池化（Pooling）特性指导文档
 
 > **文档版本**: 1.0
 > **分析代码版本**: vllm-ascend main 分支（截至 2026-06）
