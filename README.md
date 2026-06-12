@@ -7,8 +7,7 @@
 | Skill | 状态 | 说明 |
 |-------|------|------|
 | [vllm-ascend-feature-learning](#vllm-ascend-feature-learning) | 可用 | 生成 vllm-ascend 特性的中文技术学习文档 |
-| vllm-ascend-feature-develop | 开发中 | 辅助 vllm-ascend 特性开发 |
-| vllm-ascend-pr-review | 开发中 | 辅助 vllm-ascend PR 代码审查 |
+| [vllm-ascend-feature-develop](#vllm-ascend-feature-develop) | 可用 | 辅助 vllm-ascend 特性开发与代码实现 |
 
 ## vllm-ascend-feature-learning
 
@@ -34,7 +33,7 @@
 - **配置参考** — 列出所有相关环境变量和配置参数
 - **插件集成分析** — 分析 patch/继承/entry point 等集成机制
 
-文档输出到 skill 目录下的 `outputs/` 子目录。
+文档输出到 `docs/feature_learning/` 目录。
 
 ### 覆盖特性
 
@@ -51,20 +50,74 @@
 | 调度 | Dynamic Batch、Profiling Chunk、Balance Scheduling |
 | 硬件特定 | 310P 支持、Xlite、CPU Binding |
 
-完整特性列表见 [feature-catalog.md](skills/vllm-ascend-feature-learning/references/feature-catalog.md)。
+完整特性列表见 [feature-catalog.md](skills/basic-skills/vllm-ascend-feature-learning/references/feature-catalog.md)。
+
+## vllm-ascend-feature-develop
+
+辅助 vllm-ascend 特性开发，提供代码实现、设计文档生成和技术方案输出。
+
+### 触发方式
+
+```
+帮我在 vllm-ascend 中实现 W4A16 量化支持
+为 vllm-ascend 添加 xxx 特性
+vllm-ascend xxx 特性开发
+```
+
+### 参考资料
+
+- [patch-system.md](skills/basic-skills/vllm-ascend-feature-develop/references/patch-system.md) — Patch 系统使用指南
+- [feature-patterns.md](skills/basic-skills/vllm-ascend-feature-develop/references/feature-patterns.md) — 特性开发模式与范例
+- [focus-areas.md](skills/basic-skills/vllm-ascend-feature-develop/references/focus-areas.md) — 重点关注领域
+
+设计文档输出到 `docs/feature_develop/` 目录。
+
+## 已生成的文档
+
+### 学习文档 (`docs/feature_learning/`)
+
+| 文档 | 主题 |
+|------|------|
+| llm_inference_pipeline.md | LLM 推理流水线 |
+| vllm_inference_pipeline.md | vLLM 推理流水线 |
+| pipeline_step.md | 推理流水线各步骤详解 |
+| pooling.md | 池化（Pooling）特性 |
+| quantization.md | 量化技术概述 |
+| quantization_vllm_ascend.md | vllm-ascend 量化实现 |
+| speculative_decoding.md | 推测解码 |
+
+### 设计文档 (`docs/feature_develop/`)
+
+| 文档 | 主题 |
+|------|------|
+| design-w4a16-quantization-adaptation-guide.md | W4A16 量化适配设计 |
 
 ## 目录结构
 
 ```
 workflow/
-├── skills/
-│   ├── vllm-ascend-feature-learning/   # 特性学习文档生成
-│   │   ├── SKILL.md                    # Skill 定义与工作流
-│   │   └── references/
-│   │       ├── feature-catalog.md      # 特性目录与文件路径索引
-│   │       └── style-guide.md          # 文档结构与格式规范
-│   ├── vllm-ascend-feature-develop/    # 特性开发辅助（开发中）
-│   └── vllm-ascend-pr-review/          # PR 审查辅助（开发中）
+├── code/                                       # 代码工作区（预留）
+├── docs/                                       # 生成的文档输出
+│   ├── feature_develop/                        # 特性设计文档
+│   ├── feature_insight/                        # 特性深度洞察
+│   └── feature_learning/                       # 特性学习文档
+├── sessions/                                   # Session 记录
+├── skills/                                     # Agent Skills 定义
+│   ├── basic-skills/                           # 基础技能
+│   │   ├── vllm-ascend-feature-develop/        # 特性开发辅助
+│   │   │   ├── SKILL.md
+│   │   │   └── references/
+│   │   │       ├── feature-patterns.md
+│   │   │       ├── focus-areas.md
+│   │   │       └── patch-system.md
+│   │   └── vllm-ascend-feature-learning/       # 特性学习文档生成
+│   │       ├── SKILL.md
+│   │       └── references/
+│   │           ├── feature-catalog.md
+│   │           └── style-guide.md
+│   ├── kv-pooling-skills/                      # KV 池化技能（预留）
+│   ├── quantization-skills/                    # 量化技能（预留）
+│   └── speculative-decoding-skills/            # 推测解码技能（预留）
 └── README.md
 ```
 
